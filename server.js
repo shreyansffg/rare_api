@@ -5,8 +5,17 @@ const db_path = './sqliteTest.db'
 const dbMeta = require('./dbSchema')
 var express = require('express');
 var app = express();
+var cors = require('cors');
 
 var DB = new DatabaseAPI(db_path, dbMeta.dbSchema)
+
+app.use(function(req, res, next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header("Access-Control-Allow-Headers", "Authorization,Content-Type, Content-Range, Content-Disposition, Content-Description,Origin, X-Requested-With, sessionId"); 
+    // res.header("Access-Control-Allow-Origin", "Origin,X-Requested-With,Content-Type,Accept");
+    next();
+});
 
 function printUserEmail(err,userInfo) {
     console.log("User's email is: " + userInfo)
@@ -15,7 +24,6 @@ function printUserEmail(err,userInfo) {
 
 // DB.registerUser("test1@testcom", "test", "test2")
 // DB.findUserByLogin('test@testcom')
-
 app.get('/', function(req,res){
 	res.send('Hello world');
 });
@@ -31,7 +39,7 @@ app.get('/getAllUsers', function(req,res,next){
     			console.log(err);
     } );
 });
-app.get('/getAllChallenges', function(req,res,next){
+app.get('/getAllChallenges', cors(),  function(req,res,next){
     DB.findAllChallenges(function(err, result){
                 res.send(result);
                 console.log(err);
