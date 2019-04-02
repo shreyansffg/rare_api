@@ -9,13 +9,15 @@ var cors = require('cors');
 
 var DB = new DatabaseAPI(db_path, dbMeta.dbSchema)
 
-app.use(function(req, res, next){
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header("Access-Control-Allow-Headers", "Authorization,Content-Type, Content-Range, Content-Disposition, Content-Description,Origin, X-Requested-With, sessionId"); 
-    // res.header("Access-Control-Allow-Origin", "Origin,X-Requested-With,Content-Type,Accept");
-    next();
-});
+app.use(cors());
+
+// app.get( '/', function(req, res, next){
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.header("Access-Control-Allow-Headers", "Authorization,Content-Type, Content-Range, Content-Disposition, Content-Description,Origin, X-Requested-With, sessionId");
+//     // res.header("Access-Control-Allow-Origin", "Origin,X-Requested-With,Content-Type,Accept");
+//     next();
+// });
 
 function printUserEmail(err,userInfo) {
     console.log("User's email is: " + userInfo)
@@ -24,9 +26,14 @@ function printUserEmail(err,userInfo) {
 
 // DB.registerUser("test1@testcom", "test", "test2")
 // DB.findUserByLogin('test@testcom')
-app.get('/', function(req,res){
-	res.send('Hello world');
-});
+// app.get('/', function(req,res, next){
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//   res.header("Access-Control-Allow-Headers", "Authorization,Content-Type, Content-Range, Content-Disposition, Content-Description,Origin, X-Requested-With, sessionId");
+//   // res.header("Access-Control-Allow-Origin", "Origin,X-Requested-With,Content-Type,Accept");
+//   next();
+// 	res.send('Hello world');
+// });
 
 app.get('/findUserByEmail', function(req, res,next){
     DB.findUserByLogin(req.query.email, function(err, result){
