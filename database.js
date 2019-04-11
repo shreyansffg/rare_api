@@ -67,9 +67,9 @@ function DatabaseAPI(db_path, dbSchema){
 	            _callback(error,row)
 	        });
 		},
-		addChallenge: function(challenge_name, start_date, end_date, created_timestamp, active, hashtags_ids, media_type, multiplier,description){
-			var sql = "INSERT INTO challenge(challenge_name, start_date, end_date, created_timestamp, active, hashtags_ids, media_type, multiplier,description) VALUES (?,?,?,?,?,?,?,?,?)"
-			DB.run(sql,[challenge_name, start_date, end_date, dbtimestamp(), active, hashtags_ids, media_type, multiplier,description], function(error){
+		addChallenge: function(challenge_name, start_date, end_date, active, hashtag_name, media_type, multiplier,description){
+			var sql = "INSERT INTO challenge(challenge_name, start_date, end_date, created_timestamp, active, hashtag_name, media_type, multiplier,description) VALUES (?,?,?,?,?,?,?,?,?)"
+			DB.run(sql,[challenge_name, start_date, end_date, dbtimestamp(), active, hashtag_name, media_type, multiplier,description], function(error){
 				if(error){
 					console.log(error)
 				}else{
@@ -137,13 +137,12 @@ function DatabaseAPI(db_path, dbSchema){
 		},
 		addHashtag: function(hashtag_name, points) { 
 
-		    var sql = 'INSERT INTO hashtags(hashtag_name, points) VALUES(?,?) '
+		    var sql = 'INSERT INTO hashtags(hashtag_name) VALUES(?) '
 		  
-	        DB.run(sql, [hashtag_name, points], function(error){
+	        DB.run(sql, [hashtag_name], function(error){
 				if(error){
 					console.log(error)
 				}else{
-					console.log("Id:" +id)
 					console.log("# of row changes" + this.changes)
 				}
 			});

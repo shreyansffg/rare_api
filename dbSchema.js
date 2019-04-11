@@ -12,14 +12,15 @@ module.exports .dbSchema = `CREATE TABLE IF NOT EXISTS Users (
     CREATE TABLE IF NOT EXISTS challenge (
         id integer NOT NULL PRIMARY KEY,
         challenge_name text NOT NULL UNIQUE,
-        start_date datetime NOT NULL,
+        start_date datetime,
         end_date datetime,
         created_timestamp datetime,
         active boolean,
-        hashtags_ids,
+        hashtags_name text,
         media_type text,
         multiplier integer, 
-        description text          
+        description text,
+        instructions text          
     );
     CREATE TABLE IF NOT EXISTS challenge_users (
         user_id integer not null, 
@@ -28,9 +29,8 @@ module.exports .dbSchema = `CREATE TABLE IF NOT EXISTS Users (
         user_media text
    );
    CREATE TABLE IF NOT EXISTS hashtags (
-        id integer PRIMARY KEY,
-        hashtag_name text not null,
-        points integer
+        id INTEGER PRIMARY KEY,
+        hashtag_name text
    );
    CREATE TABLE IF NOT EXISTS o_auth(
         USER_ID integer,
