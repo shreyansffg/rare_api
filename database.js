@@ -69,7 +69,7 @@ function DatabaseAPI(db_path, dbSchema){
 		},
 		addChallenge: function(challenge_name, start_date, end_date, created_timestamp, active, hashtags_ids, media_type, multiplier,description){
 			var sql = "INSERT INTO challenge(challenge_name, start_date, end_date, created_timestamp, active, hashtags_ids, media_type, multiplier,description) VALUES (?,?,?,?,?,?,?,?,?)"
-			DB.run(sql,[challenge_name, start_date, end_date, created_timestamp, active, hashtags_ids, media_type, multiplier,description], function(error){
+			DB.run(sql,[challenge_name, start_date, end_date, dbtimestamp(), active, hashtags_ids, media_type, multiplier,description], function(error){
 				if(error){
 					console.log(error)
 				}else{
@@ -166,6 +166,19 @@ function DatabaseAPI(db_path, dbSchema){
 		findAllChallenges: function( _callback) { 
 		    var sql = 'SELECT *'
 		    sql += 'FROM challenge '
+		 
+		    DB.all(sql, function(error, row) {
+	            if (error) {
+	                console.log(error)
+	                return
+	            }
+	           
+	            _callback(error,row)
+	        });
+		},
+		findAllHashtags: function( _callback) { 
+		    var sql = 'SELECT *'
+		    sql += 'FROM hashtags '
 		 
 		    DB.all(sql, function(error, row) {
 	            if (error) {
