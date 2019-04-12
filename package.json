@@ -6,7 +6,8 @@
   "dependencies": {
     "express": "^4.16.4",
     "sqlite": "^3.0.2",
-    "cors": "^2.5.8"
+    "cors": "^2.5.8",
+    "basic-auth": "@2.0.1",
   },
   "engines": {
     "node": "8.10.0"
