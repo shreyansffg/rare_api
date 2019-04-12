@@ -1,7 +1,7 @@
 //server.js
 const { DatabaseAPI } = require('./database')
 const sqlite3 = require('sqlite3').verbose()
-const db_path = './sqliteTest.db'
+const db_path = './sqlite1.db'
 const dbMeta = require('./dbSchema')
 var express = require('express');
 var app = express();
@@ -86,7 +86,7 @@ app.post('/admin/addUsers', function(req, res){
 
 app.post('/admin/addChallenge', function(req, res){
 	console.log(req);
-    DB.addChallenge(req.query.challengeName, req.query.startDate, req.query.endDate, req.query.createTimestamp, req.query.active,req.query.hashtagId, req.query.mediaType, req.query.description);
+    DB.addChallenge(req.query.challengeName, req.query.startDate, req.query.endDate, req.query.active,req.query.hashtagName, req.query.mediaType, req.query.description);
     res.send("added challenge!");
 });
 
