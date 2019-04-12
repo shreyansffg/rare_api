@@ -20,7 +20,8 @@ module.exports .dbSchema = `CREATE TABLE IF NOT EXISTS Users (
         media_type text,
         multiplier integer, 
         description text,
-        instructions text          
+        instructions text,
+        max_points integer          
     );
     CREATE TABLE IF NOT EXISTS challenge_users (
         user_id integer not null, 
