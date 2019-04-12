@@ -86,7 +86,7 @@ app.post('/admin/addUsers', function(req, res){
 
 app.post('/admin/addChallenge', function(req, res){
 	console.log(req);
-    DB.addChallenge(req.query.challengeName, req.query.startDate, req.query.endDate, req.query.active,req.query.hashtagName, req.query.mediaType, req.query.description);
+    DB.addChallenge(req.query.challengeName, req.query.startDate, req.query.endDate, req.query.active,req.query.hashtagName, req.query.mediaType, req.query.multiplier, req.query.description);
     res.send("added challenge!");
 });
 

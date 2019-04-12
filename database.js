@@ -68,7 +68,7 @@ function DatabaseAPI(db_path, dbSchema){
 	        });
 		},
 		addChallenge: function(challenge_name, start_date, end_date, active, hashtag_name, media_type, multiplier,description){
-			var sql = "INSERT INTO challenge(challenge_name, start_date, end_date, created_timestamp, active, hashtags_name, media_type, multiplier,description) VALUES (?,?,?,datetime('now'),?,?,?,?,?)"
+			var sql = "INSERT INTO challenge(challenge_name, start_date, end_date, active, hashtags_name, media_type, multiplier, description, created_timestamp) VALUES (?,?,?,?,?,?,?,?,datetime('now'))"
 			DB.run(sql,[challenge_name, start_date, end_date, active, hashtag_name, media_type, multiplier,description], function(error){
 				if(error){
 					console.log(error)
