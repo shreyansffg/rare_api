@@ -35,6 +35,9 @@ var auth = function (req, res, next) {
 
 app.all("/admin/*", auth);
 
+app.get('/', function(req, res){
+   res.redirect('/admin/getAllChallenges');
+});
 
 app.get('/admin/findUserByEmail', function(req, res,next){
     DB.findUserByLogin(req.query.email, function(err, result){
